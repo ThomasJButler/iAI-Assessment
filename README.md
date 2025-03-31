@@ -2,7 +2,7 @@
 
 This repository contains the solution for the AI Evaluation Engineer Technical Task for i.AI. The task involves generating synthetic consultation responses, extracting themes using Themefinder, creating a second set of theme mappings with controlled randomness, and comparing the two sets of theme mappings.
 
-## Project Structure
+## Project Structure (files in /data are generated when run the commands to fetch from API).
 
 ```
 project/
