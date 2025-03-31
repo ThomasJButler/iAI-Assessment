@@ -136,29 +136,15 @@ conda activate iai-assessment
 
 ## Usage
 
-### 1. Generate Synthetic Data
+### 1. Generate Synthetic Data (Handling API Rate Limits) #### 
 
 Generate 300 synthetic consultation responses:
-
-```bash
-python3 scripts/data_generation.py --count 300 --output data/synthetic_responses.json
-```
-
-#### Handling API Rate Limits
-
-If you encounter rate limit errors with the OpenAI API (most likely the case), you can use the batch generation script:
 
 ```bash
 python3 generate_in_batches.py
 ```
 
 This script generates responses in small batches with delays between batches to avoid rate limits (takes around 15-20 minutes to gather and combine the 300 resoponses). See [BATCH_GENERATION_README.md](BATCH_GENERATION_README.md) for details.
-
-Once the 300 responses are generated, run this command to continue the pipeline solution (only if it is stuck on step 1 as 300 are already generated from the batch API calls earlier);
-
-```bash
-python3 run_pipeline.py --skip-generation 
-```
 
 ### 2. Generate Themes
 
@@ -196,13 +182,7 @@ python3 scripts/theme_comparison.py --mapping1 data/theme_mapping_1.json --mappi
 
 You can run the complete pipeline using either the shell script or Python script:
 
-#### Using the Shell Script
-
-```bash
-./run_pipeline.sh
-```
-
-To skip the data generation step (if you've already generated the data):
+#### Using the Shell Script (skips the data generation from Task 1 and runs the rest of the script)
 
 ```bash
 ./run_pipeline.sh --skip-generation
@@ -214,7 +194,7 @@ To skip the data generation step (if you've already generated the data):
 python3 run_pipeline.py --count 300 --variation 0.3
 ```
 
-To skip the data generation step (if you've already generated the data):
+#### To skip the data generation step (if you've already generated the data):
 
 ```bash
 python3 run_pipeline.py --skip-generation
