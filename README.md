@@ -196,10 +196,22 @@ You can run the complete pipeline using either the shell script or Python script
 ./run_pipeline.sh
 ```
 
+To skip the data generation step (if you've already generated the data):
+
+```bash
+./run_pipeline.sh --skip-generation
+```
+
 #### Using the Python Script
 
 ```bash
 python3 run_pipeline.py --count 300 --variation 0.3
+```
+
+To skip the data generation step (if you've already generated the data):
+
+```bash
+python3 run_pipeline.py --skip-generation
 ```
 
 Both scripts will:

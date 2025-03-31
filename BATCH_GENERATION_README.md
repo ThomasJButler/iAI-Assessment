@@ -1,13 +1,13 @@
-# Batch Generation for i.AI Assessment
+# Fast Batch Generation for i.AI Assessment
 
-This document explains how to generate the 300 synthetic consultation responses in batches to avoid hitting API rate limits.
+This document explains how to quickly generate the 300 synthetic consultation responses in batches to avoid hitting API rate limits.
 
 ## Background
 
 The OpenAI API has rate limits that prevent generating all 300 responses at once. The `generate_in_batches.py` script helps work around these limits by:
 
-1. Generating responses in small batches (10 responses per batch by default)
-2. Waiting between batches (5 minutes by default)
+1. Generating responses in larger batches (25 responses per batch by default)
+2. Waiting briefly between batches (15 seconds by default)
 3. Combining all batches into a single file
 4. Removing any duplicate responses
 
@@ -22,8 +22,8 @@ python3 generate_in_batches.py
 ```
 
 This will:
-- Generate 30 batches of 10 responses each
-- Wait 5 minutes between batches
+- Generate 12 batches of 25 responses each
+- Wait 15 seconds between batches
 - Save the combined responses to `data/synthetic_responses.json`
 
 ### Custom Settings
@@ -70,7 +70,8 @@ python3 run_pipeline.py --count 300 --variation 0.3
 
 ## Tips
 
-- The script may take several hours to complete due to the wait times between batches
-- You can run it overnight or in the background
+- The script should complete in approximately 10-15 minutes with the default settings
+- If you encounter rate limit errors, you can increase the wait time (e.g., `--wait-time 30`)
 - If you need to stop it, press Ctrl+C and it will try to gracefully exit
 - You can resume by running the script again, and it will combine any batches that were already generated
+- For maximum speed, we've set the temperature to 1.0 and reduced retry delays

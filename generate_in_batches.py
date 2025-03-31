@@ -29,8 +29,8 @@ logger = logging.getLogger(__name__)
 
 # Constants
 DEFAULT_TOTAL_RESPONSES = 300
-DEFAULT_BATCH_SIZE = 10  # Smaller batch size to avoid rate limits
-DEFAULT_WAIT_TIME = 300  # 5 minutes between batches to avoid rate limits
+DEFAULT_BATCH_SIZE = 25  # Larger batch size for faster generation
+DEFAULT_WAIT_TIME = 15   # 15 seconds between batches for faster generation
 OUTPUT_FILE = "data/synthetic_responses.json"
 TEMP_DIR = "data/temp"
 

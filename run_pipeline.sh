@@ -27,11 +27,22 @@ echo "- Response count: $RESPONSE_COUNT"
 echo "- Variation level: $VARIATION_LEVEL"
 echo "========================================"
 
-# Step 1: Generate synthetic data
+# Check if we should skip data generation
+SKIP_GENERATION=false
+if [ $# -gt 0 ] && [ "$1" == "--skip-generation" ]; then
+    SKIP_GENERATION=true
+    shift
+fi
+
+# Step 1: Generate synthetic data (if not skipped)
 echo ""
-echo "Step 1: Generating synthetic consultation responses..."
-python3 "$SCRIPTS_DIR/data_generation.py" --count "$RESPONSE_COUNT" --output "$DATA_DIR/synthetic_responses.json"
-echo "✓ Synthetic data generation complete"
+if [ "$SKIP_GENERATION" = false ]; then
+    echo "Step 1: Generating synthetic consultation responses..."
+    python3 "$SCRIPTS_DIR/data_generation.py" --count "$RESPONSE_COUNT" --output "$DATA_DIR/synthetic_responses.json"
+    echo "✓ Synthetic data generation complete"
+else
+    echo "Step 1: Skipping synthetic data generation (using existing data)"
+fi
 
 # Step 2: Extract themes
 echo ""

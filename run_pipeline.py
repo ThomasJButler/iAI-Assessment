@@ -74,13 +74,14 @@ def run_command(command: List[str], description: str) -> Optional[str]:
         return None
 
 
-def run_pipeline(response_count: int, variation_level: float) -> bool:
+def run_pipeline(response_count: int, variation_level: float, skip_generation: bool = False) -> bool:
     """
     Run the complete pipeline.
 
     Args:
         response_count: Number of synthetic responses to generate
         variation_level: Level of variation for the second theme mapping
+        skip_generation: Whether to skip the data generation step
 
     Returns:
         True if the pipeline completed successfully, False otherwise
@@ -95,18 +96,22 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
     logger.info(f"Running complete pipeline with:")
     logger.info(f"- Response count: {response_count}")
     logger.info(f"- Variation level: {variation_level}")
+    logger.info(f"- Skip generation: {skip_generation}")
     logger.info("=" * 40)
     
-    # Step 1: Generate synthetic data
-    logger.info("Step 1: Generating synthetic consultation responses...")
-    if run_command([
-        "python3", 
-        os.path.join(SCRIPTS_DIR, "data_generation.py"),
-        "--count", str(response_count),
-        "--output", os.path.join(DATA_DIR, "synthetic_responses.json")
-    ], "Generate synthetic data") is None:
-        return False
-    logger.info("✓ Synthetic data generation complete")
+    # Step 1: Generate synthetic data (if not skipped)
+    if not skip_generation:
+        logger.info("Step 1: Generating synthetic consultation responses...")
+        if run_command([
+            "python3", 
+            os.path.join(SCRIPTS_DIR, "data_generation.py"),
+            "--count", str(response_count),
+            "--output", os.path.join(DATA_DIR, "synthetic_responses.json")
+        ], "Generate synthetic data") is None:
+            return False
+        logger.info("✓ Synthetic data generation complete")
+    else:
+        logger.info("Step 1: Skipping synthetic data generation (using existing data)")
     
     # Step 2: Extract themes
     logger.info("Step 2: Extracting themes using Themefinder (or fallback)...")
@@ -168,13 +173,15 @@ def main() -> None:
                         help=f'Number of synthetic responses to generate (default: {DEFAULT_RESPONSE_COUNT})')
     parser.add_argument('--variation', type=float, default=DEFAULT_VARIATION_LEVEL,
                         help=f'Variation level for the second theme mapping (default: {DEFAULT_VARIATION_LEVEL})')
+    parser.add_argument('--skip-generation', action='store_true',
+                        help='Skip the data generation step (use existing data)')
     args = parser.parse_args()
     
     # Record start time
     start_time = time.time()
     
     # Run the pipeline
-    success = run_pipeline(args.count, args.variation)
+    success = run_pipeline(args.count, args.variation, args.skip_generation)
     
     # Record end time and calculate duration
     end_time = time.time()
