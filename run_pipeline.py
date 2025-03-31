@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Pipeline Runner for i.AI Assessment
@@ -99,11 +100,10 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
     # Step 1: Generate synthetic data
     logger.info("Step 1: Generating synthetic consultation responses...")
     if run_command([
-        "python", 
+        "python3", 
         os.path.join(SCRIPTS_DIR, "data_generation.py"),
         "--count", str(response_count),
-        "--output", os.path.join(DATA_DIR, "synthetic_responses.json"),
-        "--use-sample"  # Use sample data to avoid OpenAI API issues
+        "--output", os.path.join(DATA_DIR, "synthetic_responses.json")
     ], "Generate synthetic data") is None:
         return False
     logger.info("✓ Synthetic data generation complete")
@@ -111,7 +111,7 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
     # Step 2: Extract themes
     logger.info("Step 2: Extracting themes using Themefinder (or fallback)...")
     if run_command([
-        "python",
+        "python3",
         os.path.join(SCRIPTS_DIR, "theme_extraction.py"),
         "--input", os.path.join(DATA_DIR, "synthetic_responses.json"),
         "--output", os.path.join(DATA_DIR, "theme_mapping_1.json")
@@ -122,7 +122,7 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
     # Step 3: Create second theme mapping
     logger.info(f"Step 3: Creating second theme mapping with variation level {variation_level}...")
     if run_command([
-        "python",
+        "python3",
         os.path.join(SCRIPTS_DIR, "theme_variation.py"),
         "--input", os.path.join(DATA_DIR, "theme_mapping_1.json"),
         "--output", os.path.join(DATA_DIR, "theme_mapping_2.json"),
@@ -134,7 +134,7 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
     # Step 4: Compare theme mappings
     logger.info("Step 4: Comparing theme mappings and generating summary...")
     if run_command([
-        "python",
+        "python3",
         os.path.join(SCRIPTS_DIR, "theme_comparison.py"),
         "--mapping1", os.path.join(DATA_DIR, "theme_mapping_1.json"),
         "--mapping2", os.path.join(DATA_DIR, "theme_mapping_2.json"),

@@ -17,39 +17,6 @@ import random
 import logging
 from typing import List, Dict, Any, Optional
 import argparse
-# Import openai only when needed to avoid errors if not installed
-# import openai
-#!/usr/bin/env python3
-"""
-Data Generation Script for i.AI Assessment
-
-This script generates synthetic consultation responses using Azure OpenAI API.
-It creates 300 diverse responses to the question:
-"What changes would you like to see in the education system in your area over the next five years?"
-
-Author: AI Evaluation Engineer
-Date: 31/03/2025
-"""
-
-#!/usr/bin/env python3
-"""
-Data Generation Script for i.AI Assessment
-
-This script generates synthetic consultation responses using Azure OpenAI API.
-It creates 300 diverse responses to the question:
-"What changes would you like to see in the education system in your area over the next five years?"
-
-Author: AI Evaluation Engineer
-Date: 31/03/2025
-"""
-
-import os
-import json
-import time
-import random
-import logging
-from typing import List, Dict, Any, Optional
-import argparse
 import openai
 
 # Configure logging
@@ -73,11 +40,11 @@ DEPLOYMENT_NAME = "gpt-4o"
 CONSULTATION_QUESTION = "What changes would you like to see in the education system in your area over the next five years?"
 TOTAL_RESPONSES = 300
 OUTPUT_FILE = "data/synthetic_responses.json"
-BATCH_SIZE = 5  # Reduced batch size to avoid rate limits
+BATCH_SIZE = 20  # Increased batch size for faster generation
 MAX_RETRIES = 5  # Increased max retries
-INITIAL_RETRY_DELAY = 5  # seconds
-MAX_RETRY_DELAY = 60  # Maximum delay between retries (seconds)
-BATCH_DELAY = 10  # seconds between batches to avoid rate limits
+INITIAL_RETRY_DELAY = 2  # seconds - reduced initial delay
+MAX_RETRY_DELAY = 30  # Maximum delay between retries (seconds) - reduced max delay
+BATCH_DELAY = 3  # seconds between batches - reduced delay
 
 
 class ResponseGenerator:
@@ -116,7 +83,7 @@ class ResponseGenerator:
             List of generated responses
         """
         # Build the prompt based on parameters
-        system_prompt = "You are generating synthetic responses to a public consultation."
+        system_prompt = "You are generating synthetic consultation responses to a public education survey. Generate diverse, realistic responses that reflect a wide range of opinions, backgrounds, and priorities."
         
         user_prompt = f"Generate {batch_size} diverse, realistic responses to the following consultation question:\n\n"
         user_prompt += f'"{CONSULTATION_QUESTION}"\n\n'
@@ -136,6 +103,7 @@ class ResponseGenerator:
             user_prompt += f"Focus responses on aspects related to {focus}. "
         
         user_prompt += "\nEnsure responses are diverse, realistic, and reflect a range of opinions. "
+        user_prompt += "Make sure each response is unique and different from the others. "
         user_prompt += "Format the output as a JSON array of strings, with each string being a separate response."
 
         # Call the API with exponential backoff retry logic
@@ -147,7 +115,7 @@ class ResponseGenerator:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": user_prompt}
                     ],
-                    temperature=0.7,
+                    temperature=0.9,  # Increased temperature for more diversity
                     max_tokens=4000,
                     response_format={"type": "json_object"}
                 )
@@ -245,9 +213,9 @@ class ResponseGenerator:
             # Log progress
             logger.info(f"Progress: {len(all_responses)}/{total_count} responses generated")
             
-            # Add a longer delay between batches to avoid rate limiting
+            # Add a delay between batches to avoid rate limiting
             if i < batches_needed - 1:
-                delay = BATCH_DELAY + random.uniform(-2, 2)  # Add some jitter
+                delay = BATCH_DELAY + random.uniform(-1, 1)  # Add some jitter
                 logger.info(f"Waiting {delay:.1f} seconds before next batch to avoid rate limits...")
                 time.sleep(delay)
         

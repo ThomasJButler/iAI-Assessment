@@ -144,6 +144,16 @@ Generate 300 synthetic consultation responses:
 python3 scripts/data_generation.py --count 300 --output data/synthetic_responses.json
 ```
 
+#### Handling API Rate Limits
+
+If you encounter rate limit errors with the OpenAI API, you can use the batch generation script:
+
+```bash
+python3 generate_in_batches.py
+```
+
+This script generates responses in small batches with delays between batches to avoid rate limits. See [BATCH_GENERATION_README.md](BATCH_GENERATION_README.md) for details.
+
 ### 2. Generate Themes
 
 Extract themes from the synthetic responses using Themefinder (or fallback implementation):
