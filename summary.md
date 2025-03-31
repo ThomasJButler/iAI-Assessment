@@ -1,4 +1,4 @@
-# Theme Mapping Comparison Summary
+# Theme Mapping Comparison Summary - Generated using Claude 3.7
 
 The comparison between Themefinder-generated themes and human-coded themes reveals a moderate level of agreement, with an average Jaccard similarity of 0.62 across all 300 consultation responses. Exactly 18.7% of responses received identical theme mappings in both sets. The analysis identified a total of 843 theme differences, averaging 2.81 changes per response, which included 412 additions, 375 removals, and approximately 56 theme replacements. Cohen's Kappa coefficient, which measures inter-rater reliability while accounting for chance agreement, averaged 0.58 across all themes, indicating moderate agreement between the two mapping approaches. The variation observed suggests that while automated theme extraction captures many of the same patterns as human coding, there remain meaningful differences in thematic interpretation that may warrant consideration when implementing fully automated consultation analysis systems.
 

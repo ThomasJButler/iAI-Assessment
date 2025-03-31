@@ -51,8 +51,8 @@ project/
 2. Install the required packages:
 
 ```bash
-pip install openai numpy matplotlib pandas scikit-learn
-pip install themefinder  # Optional, fallback implementation provided
+pip3 install openai numpy matplotlib pandas scikit-learn
+pip3 install themefinder  # Optional, fallback implementation provided
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ pip install themefinder  # Optional, fallback implementation provided
 Generate 300 synthetic consultation responses:
 
 ```bash
-python scripts/data_generation.py --count 300 --output data/synthetic_responses.json
+python3 scripts/data_generation.py --count 300 --output data/synthetic_responses.json
 ```
 
 ### 2. Generate Themes
@@ -70,13 +70,13 @@ python scripts/data_generation.py --count 300 --output data/synthetic_responses.
 Extract themes from the synthetic responses using Themefinder (or fallback implementation):
 
 ```bash
-python scripts/theme_extraction.py --input data/synthetic_responses.json --output data/theme_mapping_1.json
+python3 scripts/theme_extraction.py --input data/synthetic_responses.json --output data/theme_mapping_1.json
 ```
 
 To force the fallback implementation even if Themefinder is available:
 
 ```bash
-python scripts/theme_extraction.py --force-fallback
+python3 scripts/theme_extraction.py --force-fallback
 ```
 
 ### 3. Create a Second Theme Mapping
@@ -84,7 +84,7 @@ python scripts/theme_extraction.py --force-fallback
 Create a second set of theme mappings with controlled randomness:
 
 ```bash
-python scripts/theme_variation.py --input data/theme_mapping_1.json --output data/theme_mapping_2.json --variation 0.3
+python3 scripts/theme_variation.py --input data/theme_mapping_1.json --output data/theme_mapping_2.json --variation 0.3
 ```
 
 The `--variation` parameter controls the degree of randomness (0.0 to 1.0).
@@ -94,7 +94,7 @@ The `--variation` parameter controls the degree of randomness (0.0 to 1.0).
 Compare the two sets of theme mappings and generate a summary:
 
 ```bash
-python scripts/theme_comparison.py --mapping1 data/theme_mapping_1.json --mapping2 data/theme_mapping_2.json --output data/comparison_results.json --summary summary.md
+python3 scripts/theme_comparison.py --mapping1 data/theme_mapping_1.json --mapping2 data/theme_mapping_2.json --output data/comparison_results.json --summary summary.md
 ```
 
 ### Running the Complete Pipeline
@@ -110,7 +110,7 @@ You can run the complete pipeline using either the shell script or Python script
 #### Using the Python Script
 
 ```bash
-python run_pipeline.py --count 300 --variation 0.3
+python3 run_pipeline.py --count 300 --variation 0.3
 ```
 
 Both scripts will:
@@ -140,10 +140,10 @@ Sample data files are provided in the `data` directory:
 
 This project was developed with AI assistance. The following AI tools were used:
 
-- Azure OpenAI API (GPT-4o) for generating synthetic consultation responses
-- AI assistance for code development and documentation
+- Azure OpenAI API (GPT-4o) for generating synthetic consultation responses.
+- AI assistance for code development and documentation, ChatGPT 4.0 (custom prompting GPT), Perplexity MCP, Claude 3.7, Cline for Agentic AI capabilities inside VS code.
 
 ## Author
 
-AI Evaluation Engineer  
+Thomas James Butler 
 Date: 31/03/2025
