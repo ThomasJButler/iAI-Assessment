@@ -1,0 +1,36 @@
+2025-03-31 15:48:10,076 - __main__ - INFO - Starting response generation: target=10, output=data/test_responses.json
+2025-03-31 15:48:10,205 - __main__ - INFO - Initialized ResponseGenerator with Azure OpenAI client
+2025-03-31 15:48:10,205 - __main__ - INFO - Generating 10 responses in 1 batches
+2025-03-31 15:48:10,205 - __main__ - INFO - Batch 1/1: Generating 10 responses (perspective=education professional, length=short, focus=extracurricular activities)
+2025-03-31 15:48:16,797 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 200 OK"
+2025-03-31 15:48:16,802 - __main__ - INFO - Progress: 10/10 responses generated
+2025-03-31 15:48:16,802 - __main__ - INFO - Removed 0 duplicate responses
+2025-03-31 15:48:16,803 - __main__ - INFO - Saved 10 responses to data/test_responses.json
+2025-03-31 15:48:16,803 - __main__ - INFO - Response generation complete
+2025-03-31 15:48:32,468 - __main__ - INFO - Starting response generation: target=300, output=data/synthetic_responses.json
+2025-03-31 15:48:32,522 - __main__ - INFO - Initialized ResponseGenerator with Azure OpenAI client
+2025-03-31 15:48:32,522 - __main__ - INFO - Generating 300 responses in 30 batches
+2025-03-31 15:48:32,522 - __main__ - INFO - Batch 1/30: Generating 10 responses (perspective=teacher, length=long, focus=teacher support)
+2025-03-31 15:48:33,567 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 429 Too Many Requests"
+2025-03-31 15:48:33,568 - openai._base_client - INFO - Retrying request to /chat/completions in 38.000000 seconds
+2025-03-31 15:49:24,997 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 200 OK"
+2025-03-31 15:49:25,002 - __main__ - INFO - Progress: 10/300 responses generated
+2025-03-31 15:49:26,008 - __main__ - INFO - Batch 2/30: Generating 10 responses (perspective=education professional, length=short, focus=funding)
+2025-03-31 15:49:26,263 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 429 Too Many Requests"
+2025-03-31 15:49:26,264 - openai._base_client - INFO - Retrying request to /chat/completions in 47.000000 seconds
+2025-03-31 15:50:19,748 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 200 OK"
+2025-03-31 15:50:19,750 - __main__ - INFO - Progress: 20/300 responses generated
+2025-03-31 15:50:20,753 - __main__ - INFO - Batch 3/30: Generating 10 responses (perspective=parent, length=long, focus=None)
+2025-03-31 15:50:21,010 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 429 Too Many Requests"
+2025-03-31 15:50:21,011 - openai._base_client - INFO - Retrying request to /chat/completions in 54.000000 seconds
+2025-03-31 15:51:40,106 - __main__ - INFO - Starting response generation: target=300, output=data/synthetic_responses.json
+2025-03-31 15:51:40,131 - __main__ - INFO - Initialized ResponseGenerator with Azure OpenAI client
+2025-03-31 15:51:40,132 - __main__ - INFO - Generating 300 responses in 30 batches
+2025-03-31 15:51:40,132 - __main__ - INFO - Batch 1/30: Generating 10 responses (perspective=None, length=long, focus=None)
+2025-03-31 15:51:41,234 - httpx - INFO - HTTP Request: POST https://iai-azoai-interview.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-08-01-preview "HTTP/1.1 429 Too Many Requests"
+2025-03-31 15:51:41,236 - openai._base_client - INFO - Retrying request to /chat/completions in 35.000000 seconds
+2025-03-31 15:56:56,751 - __main__ - INFO - Output file: data/synthetic_responses.json
+2025-03-31 15:56:56,751 - __main__ - INFO - Using sample data from data/sample_responses.json
+2025-03-31 15:56:56,754 - __main__ - INFO - Loaded 10 sample responses
+2025-03-31 15:56:56,754 - __main__ - INFO - Saved 10 responses to data/synthetic_responses.json
+2025-03-31 15:56:56,754 - __main__ - INFO - Response generation complete
