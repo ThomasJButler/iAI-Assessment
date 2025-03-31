@@ -1,0 +1,39 @@
+2025-03-31 15:56:56,220 - __main__ - INFO - ========================================
+2025-03-31 15:56:56,220 - __main__ - INFO - i.AI Assessment Pipeline
+2025-03-31 15:56:56,220 - __main__ - INFO - ========================================
+2025-03-31 15:56:56,220 - __main__ - INFO - Running complete pipeline with:
+2025-03-31 15:56:56,220 - __main__ - INFO - - Response count: 10
+2025-03-31 15:56:56,220 - __main__ - INFO - - Variation level: 0.3
+2025-03-31 15:56:56,220 - __main__ - INFO - ========================================
+2025-03-31 15:56:56,220 - __main__ - INFO - Step 1: Generating synthetic consultation responses...
+2025-03-31 15:56:56,220 - __main__ - INFO - Running: python scripts/data_generation.py --count 10 --output data/synthetic_responses.json --use-sample
+2025-03-31 15:56:56,220 - __main__ - INFO - Step: Generate synthetic data
+2025-03-31 15:56:56,788 - __main__ - INFO - Command completed successfully
+2025-03-31 15:56:56,788 - __main__ - INFO - ✓ Synthetic data generation complete
+2025-03-31 15:56:56,788 - __main__ - INFO - Step 2: Extracting themes using Themefinder (or fallback)...
+2025-03-31 15:56:56,788 - __main__ - INFO - Running: python scripts/theme_extraction.py --input data/synthetic_responses.json --output data/theme_mapping_1.json
+2025-03-31 15:56:56,788 - __main__ - INFO - Step: Extract themes
+2025-03-31 15:56:56,938 - __main__ - INFO - Command completed successfully
+2025-03-31 15:56:56,940 - __main__ - INFO - ✓ Theme extraction complete
+2025-03-31 15:56:56,941 - __main__ - INFO - Step 3: Creating second theme mapping with variation level 0.3...
+2025-03-31 15:56:56,941 - __main__ - INFO - Running: python scripts/theme_variation.py --input data/theme_mapping_1.json --output data/theme_mapping_2.json --variation 0.3
+2025-03-31 15:56:56,941 - __main__ - INFO - Step: Create second theme mapping
+2025-03-31 15:56:57,004 - __main__ - INFO - Command completed successfully
+2025-03-31 15:56:57,004 - __main__ - INFO - ✓ Second theme mapping created
+2025-03-31 15:56:57,004 - __main__ - INFO - Step 4: Comparing theme mappings and generating summary...
+2025-03-31 15:56:57,004 - __main__ - INFO - Running: python scripts/theme_comparison.py --mapping1 data/theme_mapping_1.json --mapping2 data/theme_mapping_2.json --output data/comparison_results.json --summary summary.md --visualizations data/visualizations
+2025-03-31 15:56:57,004 - __main__ - INFO - Step: Compare theme mappings
+2025-03-31 15:57:34,342 - __main__ - INFO - Command completed successfully
+2025-03-31 15:57:34,342 - __main__ - INFO - ✓ Theme comparison complete
+2025-03-31 15:57:34,342 - __main__ - INFO - ========================================
+2025-03-31 15:57:34,342 - __main__ - INFO - Pipeline completed successfully!
+2025-03-31 15:57:34,342 - __main__ - INFO - ========================================
+2025-03-31 15:57:34,342 - __main__ - INFO - Outputs:
+2025-03-31 15:57:34,343 - __main__ - INFO - - Synthetic responses: data/synthetic_responses.json
+2025-03-31 15:57:34,343 - __main__ - INFO - - Theme mapping 1: data/theme_mapping_1.json
+2025-03-31 15:57:34,343 - __main__ - INFO - - Theme mapping 2: data/theme_mapping_2.json
+2025-03-31 15:57:34,343 - __main__ - INFO - - Comparison results: data/comparison_results.json
+2025-03-31 15:57:34,343 - __main__ - INFO - - Summary: summary.md
+2025-03-31 15:57:34,343 - __main__ - INFO - - Visualizations: data/visualizations
+2025-03-31 15:57:34,343 - __main__ - INFO - ========================================
+2025-03-31 15:57:34,343 - __main__ - INFO - Pipeline completed in 38.12 seconds
