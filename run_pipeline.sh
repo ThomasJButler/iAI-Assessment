@@ -30,7 +30,7 @@ echo "========================================"
 # Step 1: Generate synthetic data
 echo ""
 echo "Step 1: Generating synthetic consultation responses..."
-python "$SCRIPTS_DIR/data_generation.py" --count "$RESPONSE_COUNT" --output "$DATA_DIR/synthetic_responses.json"
+python "$SCRIPTS_DIR/data_generation.py" --count "$RESPONSE_COUNT" --output "$DATA_DIR/synthetic_responses.json" --use-sample
 echo "✓ Synthetic data generation complete"
 
 # Step 2: Extract themes

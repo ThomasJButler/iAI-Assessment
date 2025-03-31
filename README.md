@@ -47,12 +47,91 @@ project/
 
 ## Installation
 
+### Option 1: Direct Installation
+
 1. Clone the repository
 2. Install the required packages:
 
 ```bash
 pip3 install openai numpy matplotlib pandas scikit-learn
 pip3 install themefinder  # Optional, fallback implementation provided
+```
+
+### Option 2: Virtual Environment
+
+1. Clone the repository
+2. Create and activate a virtual environment:
+
+```bash
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Upgrade pip
+pip install --upgrade pip
+
+# Install the required packages
+pip install -r requirements.txt
+```
+
+3. To deactivate the virtual environment when done:
+
+```bash
+deactivate
+```
+
+4. To activate it again later:
+
+```bash
+source venv/bin/activate
+```
+
+### Option 3: Conda Environment (Recommended)
+
+1. Clone the repository
+2. Create and activate a conda environment:
+
+#### Method A: Using environment.yml (Simplest)
+
+```bash
+# Create conda environment from the environment.yml file
+conda env create -f environment.yml
+
+# Activate the environment
+conda activate iai-assessment
+```
+
+#### Method B: Manual Setup
+
+```bash
+# Create a new conda environment with Python 3.9
+conda create -n iai-assessment python=3.9
+
+# Activate the environment
+conda activate iai-assessment
+
+# Install core dependencies using conda
+conda install -c conda-forge numpy pandas matplotlib scikit-learn
+
+# Install remaining dependencies using pip
+pip install openai pytest black flake8 mypy
+
+# Try to install themefinder (may not be available)
+pip install themefinder
+```
+
+3. To deactivate the conda environment when done:
+
+```bash
+conda deactivate
+```
+
+4. To activate it again later:
+
+```bash
+conda activate iai-assessment
 ```
 
 ## Usage
@@ -114,10 +193,12 @@ python3 run_pipeline.py --count 300 --variation 0.3
 ```
 
 Both scripts will:
-1. Generate synthetic consultation responses
+1. Generate synthetic consultation responses (using sample data by default to avoid OpenAI API issues)
 2. Extract themes using Themefinder (or fallback)
 3. Create a second theme mapping with controlled randomness
 4. Compare the two theme mappings and generate a summary
+
+**Note**: The pipeline is configured to use sample data by default to avoid OpenAI API rate limits and dependency issues. If you want to generate new data, you'll need to modify the scripts to remove the `--use-sample` flag and ensure the openai package is installed.
 
 ## Documentation
 

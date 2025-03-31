@@ -102,7 +102,8 @@ def run_pipeline(response_count: int, variation_level: float) -> bool:
         "python", 
         os.path.join(SCRIPTS_DIR, "data_generation.py"),
         "--count", str(response_count),
-        "--output", os.path.join(DATA_DIR, "synthetic_responses.json")
+        "--output", os.path.join(DATA_DIR, "synthetic_responses.json"),
+        "--use-sample"  # Use sample data to avoid OpenAI API issues
     ], "Generate synthetic data") is None:
         return False
     logger.info("✓ Synthetic data generation complete")

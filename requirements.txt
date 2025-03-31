@@ -6,7 +6,7 @@ matplotlib>=3.4.0
 scikit-learn>=1.0.0
 
 # Optional dependencies
-# themefinder  # Uncomment if available
+themefinder>=0.5.2
 
 # Development dependencies
 pytest>=6.2.5
