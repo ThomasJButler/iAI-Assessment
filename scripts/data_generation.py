@@ -40,11 +40,11 @@ DEPLOYMENT_NAME = "gpt-4o"
 CONSULTATION_QUESTION = "What changes would you like to see in the education system in your area over the next five years?"
 TOTAL_RESPONSES = 300
 OUTPUT_FILE = "data/synthetic_responses.json"
-BATCH_SIZE = 20  # Increased batch size for faster generation
-MAX_RETRIES = 5  # Increased max retries
-INITIAL_RETRY_DELAY = 2  # seconds - reduced initial delay
-MAX_RETRY_DELAY = 30  # Maximum delay between retries (seconds) - reduced max delay
-BATCH_DELAY = 3  # seconds between batches - reduced delay
+BATCH_SIZE = 25  # Increased batch size for faster generation
+MAX_RETRIES = 3  # Reduced max retries for faster completion
+INITIAL_RETRY_DELAY = 1  # seconds - minimal initial delay
+MAX_RETRY_DELAY = 10  # Maximum delay between retries (seconds) - reduced max delay
+BATCH_DELAY = 1  # seconds between batches - minimal delay
 
 
 class ResponseGenerator:
@@ -115,7 +115,7 @@ class ResponseGenerator:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": user_prompt}
                     ],
-                    temperature=0.9,  # Increased temperature for more diversity
+                    temperature=1.0,  # Maximum temperature for maximum diversity
                     max_tokens=4000,
                     response_format={"type": "json_object"}
                 )
