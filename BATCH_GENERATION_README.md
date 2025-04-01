@@ -65,7 +65,7 @@ python3 scripts/theme_comparison.py --mapping1 data/theme_mapping_1.json --mappi
 Or use the pipeline script:
 
 ```bash
-python3 run_pipeline.py --count 300 --variation 0.3
+python3 run_pipeline.py --skip-generation
 ```
 
 ## Tips
